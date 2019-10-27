@@ -1,0 +1,174 @@
+\documentclass[CJK]{ctexart}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{listings}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage[superscript]{cite}
+\usepackage{geometry}
+\usepackage{bm}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\geometry{left=4cm,right=4cm,top=1.5cm,bottom=1.5cm}
+
+\begin{document}
+\title{\textbf{从平方反比律浅谈场论及高斯定理的证明}}
+\author{518030910150 方泓杰}
+\date{Oct. 27th, 2019}
+\maketitle
+
+\section{问题简述}
+
+通过老师在上课的介绍，我们知道了由于平方反比律，在一个电荷均匀分布的球壳内的任意一点的电场强度均为 $\bm{0}$，这个结论无论在解题还是推导过程中都十分重要。那么这个结论是如何得到的呢？这个结论又有什么重要的意义呢？\par
+
+\section{推导方式一：微元积分法 \cite{bib1}}
+
+如图\ref{fig1}所示，一个半径为$R$的均匀带电球壳，总带电量为$q$，求P处的电场强度大小，其中P与球心O的距离为$r$，满足$r < R$。\par
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=2in]{pic1.png}\\
+  \caption{均匀带电圆球壳的情况} \label{fig1}
+\end{figure}
+
+如图\ref{fig1}所示，建立三维直角坐标系。取圆上任一点A，记$\theta = \langle \overrightarrow{OA}, \bm{i} \rangle$，则取角度微元$\dif \theta$，研究角度范围在$(\theta, \theta + \dif \theta)$之间的微元圆环，如图阴影区域。则容易知道，环带宽度为 $R \dif \theta$，环带半径 $O'A = R \sin \theta$，环心与球心距离$OO' = R \cos \theta$，则 \par
+
+\begin{equation}
+    \dif q = \sigma \dif S = \frac{q}{4\pi R^2} \cdot (2 \pi R \sin \theta) (R \dif \theta) = \frac{1}{2}q \sin \theta \dif \theta
+    \label{eq1}
+\end{equation}
+
+圆环对轴线上的点产生的场强在课堂上已经讨论过，因此将\eqref{eq1}代入可得 \par
+
+\begin{equation}
+    \dif \vec{E} = \frac{(r - R \cos \theta) \dif q}{4 \pi \varepsilon_0 (R^2 \cos^2 \theta + (r - R \cos \theta)^2)^{\frac{3}{2}}} \cdot \bm{i}
+    \label{eq2}
+\end{equation}
+
+为方便，令$\tau = R^2 + r^2  - 2Rr\cos \theta$，同时代入式子\eqref{eq1}，则\eqref{eq2}化为 \par
+
+\begin{equation}
+    \dif \vec{E} = \frac{q}{8\pi\varepsilon_0} \cdot \frac{R \cos \theta - r}{\tau^{\frac{3}{2}}} \dif (\cos \theta) \cdot \bm{i}
+    \label{eq3}
+\end{equation}
+
+则整个球壳在P点产生电场为对$\dif \vec{E}$积分后的值，即 \par
+
+\begin{equation}
+    \vec{E} = \int_O \dif \vec{E} = \left ( \frac{q}{8\pi\varepsilon_0} \int_0^\pi \frac{R \cos \theta - r}{\tau^{\frac{3}{2}}} \dif (\cos \theta)\right ) \bm{i}
+    \label{eq4}
+\end{equation}
+
+经过一系列积分步骤（换元，$u = \cos \theta$） \par
+
+\begin{displaymath}
+    \int_{1}^{-1}\frac{Ru \dif u}{\tau^{\frac{3}{2}}} = \left[\frac{u \tau^{-\frac{1}{2}}}{r}\right]_1^{-1} - \frac{1}{r} \int_1^{-1}\tau^{-\frac{1}{2}} \dif u = \left[\frac{u}{r\sqrt{\tau}} + \frac{\sqrt{\tau}}{Rr^2}\right]_1^{-1}
+\end{displaymath}
+
+\begin{displaymath}
+    \int_{1}^{-1}\frac{r \dif u}{\tau^{\frac{3}{2}}} = \left[\frac{1}{R\sqrt{\tau}}\right]_1^{-1}
+\end{displaymath}
+
+综上 \par
+
+\begin{equation}
+    \vec{E} = \frac{q}{8\pi\varepsilon_0}\left[\frac{u}{r\sqrt{\tau}} + \frac{\sqrt{\tau}}{Rr^2} - \frac{1}{R\sqrt{\tau}}\right]_1^{-1} \cdot \bm{i} = \frac{q}{8\pi\varepsilon_0} \left[ \frac{R - ru}{r^2\sqrt{R^2 + r^2 - 2Rru}}\right]_1^{-1} \cdot \bm{i} = \bm{0}
+    \label{eq5}
+\end{equation}
+
+对于圆球壳，我们通过微元积分，得到了球壳内的任一一点场强均为 $\bm{0}$。
+
+\section{推导方式二：几何法}
+
+以球壳内部一点P为顶点做两个锥面，此锥面就在球壳上割下两个曲面，当锥面张角为微元$\dif \omega$时，得到两个曲面元$\dif S_1, \dif S_2$，设$r_1, r_2$分别为P到$\dif S_1, \dif S_2$的距离，于是根据几何关系，有 \par
+
+\begin{equation}
+    \frac{\dif S_1}{r_1^2} = \frac{\dif S_2}{r_2^2} = \dif \omega
+    \label{eq6}
+\end{equation}
+
+令两块面积微元$\dif S_1, \dif S_2$在P处场强分别为$\dif \overrightarrow{E_1}, \dif \overrightarrow{E_2}$，则由\eqref{eq6}有 \par
+\begin{equation}
+    \frac{\dif E_1}{\dif E_2} = \frac{\sigma \frac{\dif S_1}{r_1^2}}{\sigma \frac{\dif S_2}{r_2^2}} = \frac{\sigma \dif \omega}{\sigma \dif \omega} = 1
+    \label{eq7}
+\end{equation}
+
+由场强叠加，$\dif \overrightarrow{E_1} + \dif \overrightarrow{E_2} = \bm{0}$。根据球的对称性可以知道，球壳在P点产生的合场强
+
+\begin{equation}
+    \vec{E} = \bm{0}
+    \label{eq8}
+\end{equation}
+
+我们利用几何分析的方法，得到了相同的结论。
+
+\section{从平方反比律浅谈场论}
+
+物理学中把某个物理量在空间的一个区域内的分布称为场，如温度场、密度场、引力场、电场、磁场等。我们把电场强度$\vec{E}$在空间的分布称为静电场。我们接下来来讨论相互作用场，并从场论的方向简单论证为什么平方反比律是正确的。 \par
+
+我们设场强 
+
+\begin{equation}
+    \vec{E} = K \frac{1}{r^n} \hat{r}
+    \label{eq10}
+\end{equation}
+
+其中，$K$为与作用量相关的常数，一般非0。\par
+
+由散度的意义，对于作用源以外的空间，场的散度应该为0。故 \par
+
+\begin{equation}
+    {\rm div} \vec{E} = \nabla \cdot \vec{E} = K \nabla \cdot \frac{\vec{r}}{r^{n+1}} = K\left[\frac{3}{r^{n+1}} - \frac{n+1}{2}\frac{2(x^2+y^2+z^2)}{r^{n+3}}\right] = K\left(\frac{2-n}{r^{n+1}}\right)
+    \label{eq11}
+\end{equation}
+
+仅当 $n = 2$时候，即平方反比律条件下，${\rm div} \vec{E} = 0$，场的散度为0；若$n > 2$，则${\rm div} \vec{E} < 0$，处处都是汇；若$n < 2$，则${\rm div} \vec{E} > 0$，处处都是源。从另一个方面说明了平方反比律的合理性。 \par
+
+同时，静电场的旋度$\nabla \times \vec{E} = \bm{0}$，说明静电场非涡旋场，而是有心力场。 \par
+
+\section{高斯定理的证明}
+
+对于任一单连通曲面$S$，对场内任一点O，满足O到曲面内各个点的连线都不超出曲面范围。以O为球心做一个球面$s$，使得$s$完全包含在曲面$S$ 内。从而我们对$s$上的任一面元$\dif s$，作一个以O为顶点，面元$\dif s$为底的锥体，并延长侧面，交曲面$S$形成面元$\dif S$。 \par
+
+由于$\dif s, \dif S$充分小，因此可设$\dif S$曲面上任意一点到O的距离均为$R$，$\dif s$曲面上的任意一点到O的距离为$r$，由几何关系有 \par
+
+\begin{displaymath}
+    \vec{E} \cdot \dif \vec{S} = E \dif S \cos \theta = E \frac{R^2}{r^2} \dif s = \frac{R^2}{r^2} \vec{E} \cdot \dif \vec{s} 
+\end{displaymath}
+
+从而 \par
+
+\begin{equation}
+    \mathop{{\int\!\!\!\!\!\int}\mkern-21mu \bigcirc}_S {\vec{E}\cdot \dif \vec{S}} = \mathop{{\int\!\!\!\!\!\int}\mkern-21mu \bigcirc}_s \frac{R^2}{r^2}\vec{E}\cdot\dif\vec{s} = \frac{K}{r^2}\mathop{{\int\!\!\!\!\!\int}\mkern-21mu \bigcirc}_s \dif s = 4\pi K
+    \label{eq12}
+\end{equation}
+
+对曲面$S$中包含的每一个电荷，选取电荷所在位置为O点，均有以上结论，其中$K = \frac{q_i}{4\pi\varepsilon_0}$。 \par
+
+利用场强叠加原理，则有 \par
+
+\begin{equation}
+    \mathop{{\int\!\!\!\!\!\int}\mkern-21mu \bigcirc}_S {\vec{E}\cdot \dif \vec{S}} = 4\pi \sum_i \frac{q_i}{4\pi\varepsilon_0} = \frac{q_{net}}{\varepsilon_0}
+    \label{eq13}
+\end{equation}
+
+即高斯定理。 \par
+
+\section{总结与进一步思考}
+
+本文以平方反比律在球壳上的特殊情况为例，对平方反比律的性质进行了讨论，用两种不同的方法（数值积分方法、几何分析方法）对提出的问题进行了解答。并且利用场论的知识说明了平方反比律的合理性。同时我们发现方法二具有可推广性，利用方法二的思想可以方便地证明静电场中的高斯定理，我们进行了推导演绎得出了结论。 \par
+
+为了推动读者进一步思考，本文提出下面这个问题：在一个电荷均匀分布的椭圆球壳内的电场强度如何分布？进一步，在一个电荷均匀分布的单连通区域内的电场强度如何分布？进一步，如果区域是无限的，电场强度又如何分布呢？这些进一步的问题留给大家进一步讨论。\par
+
+在上述叙述论证过程中，读者如有发现不妥之处，请不吝赐教。 \par
+
+\begin{thebibliography}{1}
+\bibitem{bib1}
+李昂, 龚升. 均匀带电球壳内外电场的一种矢量积分求法[J]. 时代教育, 2014(11):196-196.
+\end{thebibliography}
+
+
+\end{document}

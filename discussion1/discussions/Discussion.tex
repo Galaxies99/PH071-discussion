@@ -1,0 +1,120 @@
+\documentclass[CJK]{ctexart}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{listings}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage[superscript]{cite}
+\usepackage{geometry}
+\usepackage{bm}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\geometry{left=4cm,right=4cm,top=1.5cm,bottom=1.5cm}
+
+\begin{document}
+\title{\textbf{静电场边值问题的一个证明}}
+\author{518030910150 方泓杰}
+\date{Oct. 27th, 2019}
+\maketitle
+
+\section{问题简述}
+
+题主的问题本质为静电场边值问题的唯一性定理的证明。这里给出一种我认为合理的证明方法。 \par
+
+\section{前置技能}
+
+静电学的泊松方程
+
+\begin{displaymath}
+    \nabla^2 \phi = -\frac{\rho}{\varepsilon_0}
+\end{displaymath}
+
+其中，$\rho$为体电荷密度，$\phi$为电势，$\varepsilon_0$为真空电容率。
+
+\section{证明 \cite{bib1}}
+
+\subsection{问题重述}
+
+给定区域V内的自由电荷分布$\rho$和分区均匀的各电介质的性质以及在$V$的边界面$S_0$上的以下两条件之一，则V上的电场唯一确定（其中，胡老师上课提的导体所带电荷为第二类边值问题的一种特例）。 \par
+
+\begin{itemize}
+\item 第一类边值问题：电势 $\phi_{S_0}$；
+\item 第二类边值问题：电势的法向导数 $\left[\frac{\partial \phi}{\partial n}\right]_{S_0}$。
+\end{itemize}
+
+\subsection{证明}
+
+我们利用反证法，归谬的重点是静电场应该具有能量，即$W_e > 0$。 \par
+
+设V内有两组不同电势$\phi'$和$\phi''$，其中$\phi' \not= \phi''$，则具有两种不同电场。令电势差值$\phi = \phi' - \phi''$，则$\phi$也表征着一个合理的静电场。由于$\vec{E} = -\nabla \phi$，则两边用梯度算子作用后有 \par
+
+\begin{equation}
+    \vec{E} = \overrightarrow{E'} - \overrightarrow{E''}
+    \label{eq1}
+\end{equation}
+
+由静电学的泊松方程，有
+
+\begin{displaymath}
+    \nabla^2 \phi' = -\frac{\rho}{\varepsilon_0} = \nabla^2 \phi''
+\end{displaymath}
+
+从而
+
+\begin{equation}
+    \nabla^2 \phi = \nabla^2 \phi' - \nabla^2 \phi'' = 0
+    \label{eq2}
+\end{equation}
+
+在区域V的边界上有\eqref{eq3}, \eqref{eq4}两式之一（对应两类边值问题）：
+\begin{equation}
+    \phi_{S_0} = \phi'_{S_0} - \phi''_{S_0} = 0
+    \label{eq3}
+\end{equation}
+
+\begin{equation}
+    \left[\frac{\partial \phi}{\partial n}\right]_{S_0} = \left[\frac{\partial \phi'}{\partial n}\right]_{S_0} - \left[\frac{\partial \phi''}{\partial n}\right]_{S_0} = 0
+    \label{eq4}
+\end{equation}
+
+考虑第i个均匀区域内差值描述的静电场的能量：
+
+\begin{equation}
+    W_{ei} = \int_{V_i} \frac{\varepsilon_i}{2}E_i^2 \dif V = \frac{1}{2} \int_{V_i}\varepsilon_i(\nabla\phi)^2\dif V
+    \label{eq5}
+\end{equation}
+
+由于$(\nabla \phi)^2 = \nabla \cdot (\phi\nabla\phi) - \phi\nabla^2\phi$，由\eqref{eq2}则有
+
+\begin{equation}
+    (\nabla \phi)^2 = \nabla \cdot (\phi \nabla \phi)
+    \label{eq6}
+\end{equation}
+
+将\eqref{eq6}代入\eqref{eq5}，由积分的高斯定理有：
+
+\begin{equation}
+    W_{ei} = \frac{1}{2} \int_{V_i}\varepsilon_i\nabla\cdot(\phi\nabla\phi)\dif V = \frac{1}{2} \oint_{S_i}\varepsilon_i\phi\nabla\phi\cdot\dif \vec{S} = \frac{1}{2} \oint_{S_i}\varepsilon_i\phi\frac{\partial \phi}{\partial n}\dif S
+    \label{eq7}
+\end{equation}
+
+若有$n$个均匀分区，则由\eqref{eq7}总电场能量
+
+\begin{equation}
+    W_e = \sum_{i=1}^n W_{ei} = \frac{1}{2} \left(\oint_{S_0}\varepsilon\phi\frac{\partial \phi}{\partial n}\dif S + \sum_{i, j} \oint_{S_ij}\varepsilon\phi\frac{\partial \phi}{\partial n}\dif S \right)
+    \label{eq8}
+\end{equation}
+
+容易发现，第二项由于各区域的抵消关系，值为0，而将\eqref{eq3}或\eqref{eq4}代入\label{eq8}均有$W_e = 0$，与$W_e > 0$矛盾。
+
+因此，静电场边值定理得证。
+
+\begin{thebibliography}{1}
+\bibitem{bib1}
+漆新民. 关于静电场中唯一性定理的证明[J]. 物理与工程, 1993(1):23-25.
+\end{thebibliography}
+
+
+\end{document}
