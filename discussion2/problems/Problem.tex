@@ -1,0 +1,167 @@
+\documentclass[CJK]{ctexart}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{listings}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage[superscript]{cite}
+\usepackage{geometry}
+\usepackage{bm}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\geometry{left=4cm,right=4cm,top=1.5cm,bottom=1.5cm}
+
+\begin{document}
+\title{\textbf{变折射率的光传播情况}}
+\author{518030910150 方泓杰}
+\date{Dec. 17th, 2019}
+\maketitle
+
+\section{问题简述}
+
+在《大学物理》的课程内，我们讨论的范围是折射率分段不变的介质。即光路可以分成若干段 $\overrightarrow{P_0P_1}, \overrightarrow{P_1P_2}, \overrightarrow{P_2P_3}, ..., \overrightarrow{P_{m-1}P_m}$，光在每一段传播的时候，都有一个固定的折射率 $n_1, n_2, ..., n_m$。那么我们考虑更一般的情况，如果折射率是一个关于位置 $\vec{r}$ 的函数，也就是 $n = n(\vec{r})$，会有什么样特殊的性质呢？\par
+
+在讨论问题前，作如下约定：设光初始从折射率为 $n_0$ 的介质以入射角 $\theta_0$ 入射。 \par
+
+\section{情况一：介质沿某方向平移对称}
+
+如果介质沿着某个方向平移对称，那么所有界面处的法线方向都沿着这个方向。如果介质折射率满足分段不变，那么在介质的分界面处列写折射定律方程：\par
+
+\begin{equation}
+n_0\sin{\theta_0} = n_1\sin{\theta_1} = n_2\sin{\theta_2} = ... = n_m\sin{\theta_m}
+\label{eq1}
+\end{equation}
+
+根据上式即可解出光路轨迹方程（若干直线段连接而成），以及最终的出射角 $\theta_m$。\par
+
+如果介质的折射率连续，实质上和上式推导完全类似。我们在平面上建立直角坐标系，其中介质的对称方向沿着 $y$ 轴，即介质折射率 $n = n(y)$。设光从 $(x_0,y_0)$ 处以入射角 $\theta_0$ 射入，如图 \ref{fig1} 所示： \par
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=3in]{pic1.png}\\
+  \caption{介质沿某方向平移对称的情况} \label{fig1}
+\end{figure}
+
+那么和式 \eqref{eq1} 类似，有 \par
+
+\begin{equation}
+n_0\sin{\theta_0} = n(y)\sin{\theta(y)}
+\label{eq1}
+\end{equation}
+
+同时，由于光的几何性质，最后一次出射时，有 \par
+
+\begin{displaymath}
+k = \cot{\theta(y)} = \frac{\dif y}{\dif x}
+\end{displaymath}
+
+化简后有：\par
+
+\begin{equation}
+\left( \frac{\dif y}{\dif x} \right)^2 = \frac{1}{\sin^2{\theta(y)}} - 1
+\label{eq2}
+\end{equation}
+
+联立式 \eqref{eq1}, \eqref{eq2} 有 \par
+
+\begin{equation}
+\frac{\dif y}{\dif x} = \pm \sqrt{\frac{n^2(y)}{n_0^2\sin^2{\theta_0}} - 1}
+\label{eq3}
+\end{equation}
+
+若将式 \eqref{eq3} 平方后求导，则有 \par
+
+\begin{equation}
+\frac{\dif^2 y}{\dif x^2} = \frac{n(y)}{n_0^2\sin^2{\theta_0}} \cdot \frac{\dif n(y)}{\dif y}
+\label{eq4}
+\end{equation}
+
+根据式 \eqref{eq3} 或式 \eqref{eq4} 即可解得光路的轨迹方程。\par
+
+\section{情况二：介质满足球对称分布}
+
+这种情况下，折射率满足 $n = n(r)$，其中 $r$ 是讨论的点到对称中心的距离。设第 $k$ 次折射时候入射角为 $i_k$，折射角为 $\phi_k$，如图 \ref{fig2} 所示。 \par
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=3in]{pic2.png}\\
+  \caption{介质满足球对称分布的情况} \label{fig2}
+\end{figure}
+
+那么由折射定律：\par
+
+\begin{equation}
+n(r_k)\sin{i_k} = n(r_{k+1})\sin{\varphi_k}
+\label{eq5}
+\end{equation}
+
+在如图三角形中，列正弦定理：\par
+
+\begin{equation}
+\frac{\sin{\varphi_k}}{r_{k+1}} = \frac{\sin{i_{k+1}}}{r_k}
+\label{eq6}
+\end{equation}
+
+联立式 \eqref{eq5}, \eqref{eq6} 可得： \par
+
+\begin{equation}
+n(r_k)\cdot r_k \cdot \sin{i_k} = n(r_{k+1})\cdot r_{k+1} \cdot \sin{i_{k+1}}
+\label{eq7}
+\end{equation}
+
+式 \eqref{eq7} 说明，$n \cdot r \cdot \sin{i}$ 为定值，即 \par
+
+\begin{displaymath}
+r\cdot n(r) \cdot \sin{i(r)} = Const.
+\label{eq8}
+\end{displaymath}
+
+上式和角动量守恒式在数学上同构，因此可类比得到，此时轨迹为圆锥曲线。 \par
+
+\section{例题}
+
+为了更好的展示上述结论的运用，我们给出一个例题来加深理解：\par
+
+\subsection{问题描述}
+
+已知光导纤维的折射率 $n$ 沿着径向的分布为 $n^2 = n_0^2 (1 - \alpha^2r^2)$，入射角为 $\theta_0$，求光线轨迹。
+
+\subsection{解答}
+
+由第2节讨论的内容，根据式 \eqref{eq4} 有 \par
+
+\begin{displaymath}
+\frac{\dif^2 r}{\dif x^2} = -\frac{\alpha^2}{\sin^2{\theta_0}}r
+\end{displaymath}
+
+化简得 \par
+
+\begin{displaymath}
+\frac{\dif^2 r}{\dif x^2} + \frac{\alpha^2}{\sin^2{\theta_0}}r = 0
+\end{displaymath}
+
+解微分方程，有 \par
+
+\begin{displaymath}
+r = A\sin{\left(\frac{\alpha}{\sin{\theta_0}}x + \varphi_0 \right)}
+\end{displaymath}
+
+根据初始情况，即 $x = 0$ 时，$r = 0$ 且 $\frac{\dif r}{\dif x} = \cot{\theta_0}$，可以解得 $\varphi_0 = 0$ 或 $\varphi_0 = \pi$，且 $A = \frac{\cos{\theta_0}}{\alpha\cos{\varphi_0}}$，代入即得轨迹方程 \par
+
+\begin{equation}
+r = \frac{\cos{\theta_0}}{\alpha\cos{\varphi_0}} \sin{\left(\frac{\alpha}{\sin{\theta_0}}x + \varphi_0 \right)}
+\label{eq9}
+\end{equation}
+
+其中，$\varphi_0 = 0$ 说明光线向右上方入射；$\varphi_0 = \pi$ 说明光线向右下方入射。 \par
+
+\section{拓展问题}
+
+根据以上知识，我设计了一个实际问题供各位解决：海洋中得折射率满足 $n = n_0 + b|z|$，其中 $z$ 为海拔高度（有正、负区分）。如果有一光源放在 $x = 0, z = 0$ 处，求光在海洋中的轨迹。\par
+
+欢迎各位对上面的我设计的问题进行讨论，也欢迎各位提出除上文情况一、二外的其他新情况并进行讨论！
+\end{document}

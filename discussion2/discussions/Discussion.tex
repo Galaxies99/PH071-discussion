@@ -1,0 +1,102 @@
+\documentclass[CJK]{ctexart}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{listings}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage[superscript]{cite}
+\usepackage{geometry}
+\usepackage{bm}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\geometry{left=4cm,right=4cm,top=1.5cm,bottom=1.5cm}
+
+\begin{document}
+\title{\textbf{海森堡不确定性关系的一个证明}}
+\author{518030910150 方泓杰}
+\date{Dec. 18th, 2019}
+\maketitle
+
+\section{问题简述}
+
+题主的问题即为对海森堡不确定性关系（精确形式）的证明。其中海森堡不确定性关系的表达式如下： \par
+
+\begin{displaymath}
+\Delta{x}\Delta{p_x} \geq \frac{h}{4\pi} = \frac{\hbar}{2}
+\end{displaymath}
+
+\section{前置技能}
+
+高斯型波函数： \par
+
+\begin{equation}
+\psi(x) = C e^{\frac{-x^2}{2(\delta{x})^2}}
+\label{eq1}
+\end{equation}
+
+其中，$C$ 是常数，$\delta{x}$ 表示一个距离范围。上面的波函数式可以理解为其满足标准差为 $\delta{x}$ ，均值为 $0$ 的正态分布。那么根据概率统计知识， $\delta{x}$ 和测不准量 $\Delta{x} = \left<x - \left< x\right> \right>$ 之间有如下关系：\par
+
+\begin{equation}
+\delta{x} = \sqrt{2}\Delta{x}
+\label{eq2}
+\end{equation}
+
+交换理论和傅里叶变换：交换理论表明，动量的分布 $|\varphi(p)|^2$ 满足： \par
+
+\begin{equation}
+\varphi(p) = \int_{-\infty}^{\infty} \psi(x)e^{-\frac{2\pi ipx}{h}} \dif x
+\label{eq3}
+\end{equation}
+
+\section{证明}
+
+联立式 \eqref{eq1},\eqref{eq3} 进行整理，有 \par
+
+\begin{equation}
+\varphi(p) = \int_{-\infty}^{\infty}e^{-\frac{1}{2}\left(\frac{x}{\delta{x}}+\frac{2\pi ip\delta{x}}{h}\right)^2}e^{-\frac{2\pi^2p^2(\delta{x})^2}{h^2}}\dif x
+\label{eq4}
+\end{equation}
+
+令 $y = \frac{x}{\delta{x}} + 2\pi \frac{ip\delta{x}}{h}$，对式 \eqref{eq4} 进行化简后，有（此处省略化简过程） \par
+
+\begin{equation}
+\varphi(p) = C'e^{-\frac{2\pi^2p^2(\delta x)^2}{h^2}}
+\label{eq5}
+\end{equation}
+
+根据式 \eqref{eq1} 可以知道高斯型波函数的一般形式，将式 \eqref{eq5} 形式与其对应可得：\par
+
+\begin{displaymath}
+-\frac{2\pi^2p^2(\delta x)^2}{h^2} = \frac{-p^2}{2(\delta{p})^2}
+\end{displaymath}
+
+化简后，有 \par
+
+\begin{equation}
+(\delta{x})^2(\delta{p})^2 = \frac{h^2}{4\pi^2}
+\label{eq6}
+\end{equation}
+
+从式 \eqref{eq2} 可知类似地，对于动量也有关系： \par
+
+\begin{equation}
+\delta{p} = \sqrt{2}\Delta{p}
+\label{eq7}
+\end{equation}
+
+将式 \eqref{eq6} 开根并将式 \eqref{eq2}, \eqref{eq7} 代入，得到
+
+\begin{equation}
+\Delta{x}\Delta{p} = \frac{h}{4\pi} = \hbar
+\label{eq8}
+\end{equation}
+
+上面推导的情况为临界情况，因此海森堡不确定性关系即为
+
+\begin{displaymath}
+\Delta{x}\Delta{p} \geq \frac{h}{4\pi} = \frac{\hbar}{2}
+\end{displaymath}
+
+\end{document}
