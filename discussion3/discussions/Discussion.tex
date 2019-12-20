@@ -1,0 +1,63 @@
+\documentclass[CJK]{ctexart}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{listings}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage[superscript]{cite}
+\usepackage{geometry}
+\usepackage{bm}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\geometry{left=4cm,right=4cm,top=1.5cm,bottom=1.5cm}
+
+\begin{document}
+\title{\textbf{关于照度的计算问题}}
+\author{518030910150 方泓杰}
+\date{Dec. 20th, 2019}
+\maketitle
+
+\section{问题简述}
+
+如题主的图所示，光源平面和接受物平面平行且对中。已知光源半径 $R$ ，光源和接收物之间距离 $z$ 和亮度 $B$ ，求接收方的照度 $E$ 。
+
+\section{问题解答}
+
+设接收物的面积 $S$，则由照度定义，有
+
+\begin{equation}
+  E = \frac{\Phi}{S}
+  \label{eq1}
+\end{equation}
+
+又，设 $dS$ 为光源上的小面元， $d\Omega$ 为接收物对小面元处所形成的立体角，所以
+
+\begin{displaymath}
+  \dif \Phi = \vec{B} \cdot \dif \vec{S} \dif \Omega = B \cdot 2\pi\rho \dif \rho \cdot \frac{z}{\sqrt{\rho^2+z^2}} \cdot \frac{S}{\rho^2+z^2} \cdot \frac{z}{\sqrt{\rho^2+z^2}}
+\end{displaymath}
+
+注意，上式选用的面元 $dS$ 为环形面元（由于整个光源是圆形，环形具有很好的对称性）。因此，对上式积分有
+
+\begin{equation}
+  \Phi = \int_0^R \dif \Phi = \int_0^R (B \cdot 2\pi\rho \cdot \frac{Sz^2}{(\rho^2+z^2)^2}) \dif \rho
+  \label{eq2}
+\end{equation}
+
+化简式 \eqref{eq2}，有
+
+\begin{equation}
+  \Phi = \frac{\pi B R^2}{R^2 + z^2} \cdot S
+  \label{eq3}
+\end{equation}
+
+于是，联立式 \eqref{eq1}, \eqref{eq3}，有
+
+\begin{equation}
+  E = \frac{\pi R^2}{R^2+z^2}B
+\end{equation}
+
+即得答案。
+
+\end{document}

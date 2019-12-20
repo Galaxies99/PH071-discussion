@@ -1,0 +1,113 @@
+\documentclass[CJK]{ctexart}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{listings}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage[superscript]{cite}
+\usepackage{geometry}
+\usepackage{bm}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\geometry{left=4cm,right=4cm,top=1.5cm,bottom=1.5cm}
+
+\begin{document}
+\title{\textbf{缝宽周期性变化的光栅的衍射光强分析}}
+\author{518030910150 方泓杰}
+\date{Dec. 19th, 2019}
+\maketitle
+
+\section{问题简述}
+光栅是常用的光学元器件。在我们的《大学物理》课程中讨论的都是等缝距光栅的衍射问题。那么缝宽周期性变化的光栅的衍射光强是怎么样的呢？ \par
+
+\section{衍射光强的分析}
+
+缝宽周期性变化的一维光栅中中，相邻缝的间距 $d$ 是常值，缝宽 $a$ 则随缝的空间位置做周期性变化。由于其具有周期性，我们讨论光栅上一个周期内的多个缝的衍射光强分布。\par
+
+设波长为 $\lambda$ 的入射光垂直照射光栅，光栅在一个周期内共有 $k$ 条狭缝，缝宽分别为 $a_1, a_2, ..., a_n$，且 $a_i < d (i = 1, 2, 3, ..., n)$。\par
+
+为方便讨论，令 $s = \sum_{i=1}^n a_i$。
+
+对于第 $i$ 条狭缝，根据单缝衍射强度分布公式，其在接受屏处振幅大小为\par
+
+\begin{equation}
+  A_i = A_{0i} \frac{\sin{\beta_i}}{\beta_i}
+  \label{eq1}
+\end{equation}
+
+其中，$\beta_i = \frac{\pi a_i \sin{\theta}}{\lambda}$， $\theta$ 为衍射角。\par
+
+由矢量图解法知 $A_{0i}$ 为第 $i$ 条狭缝在衍射角 $\theta = 0$ 处的振幅，相当于狭缝在接收屏处的振幅的代数和，与狭缝宽度 $a_i$ 成正比，若设比例系数 $k$，则 $A_{0i} = ka_i$。\par
+
+将上两式代入式子 \eqref{eq1} ，则 \par
+
+\begin{equation}
+  A_i = ka_i \frac{\lambda\sin{\beta_i}}{\pi a_i \sin{\theta}} = \frac{k\lambda \sin{\beta_i}}{\pi\sin{\theta}}
+  \label{eq2}
+\end{equation}
+
+由于缝间距是定值，因此相邻两狭缝出射的光在光屏中相位差 $\delta$ 为定值，$\delta = \frac{2\pi d\sin{\theta}}{\lambda}$。\par
+
+\begin{figure}
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=1.4in]{pic1.jpg}\\
+  \caption{一个周期内的狭缝在接收屏处引起的振幅矢量图}\label{pic1}
+\end{figure}
+
+从而，有 \par
+
+\begin{equation}
+  A = \sqrt{\left(\sum_{i=1}^n A_i \cos{(i-1)\delta}\right)^2 + \left(\sum_{i=1}^n A_i \sin{(i-1)\delta}\right)^2}
+  \label{eq3}
+\end{equation}
+
+代入式 \eqref{eq2}，有 \par
+
+\begin{equation}
+  A = \frac{k\lambda}{\pi\sin{\theta}}\sqrt{\left(\sum_{i=1}^n \sin{\beta_i} \cos{(i-1)\delta}\right)^2 + \left(\sum_{i=1}^n \sin{\beta_i} \sin{(i-1)\delta}\right)^2}
+  \label{eq4}
+\end{equation}
+
+为方便叙述，令$p_{cos} = \sum_{i=1}^n \sin{\beta_i} \cos{(i-1)\delta}, p_{sin} = \sum_{i=1}^n \sin{\beta_i} \sin{(i-1)\delta}$，则
+
+\begin{equation}
+  A = \frac{k\lambda}{\pi\sin{\theta}}\sqrt{p_{cos}^2 + p_{sin}^2}
+  \label{eq5}
+\end{equation}
+
+所以，式 \eqref{eq5} 即为一个周期内的狭缝引起的衍射光的振幅。将一个周期内的狭缝引起的衍射视作一个整体，那么整个光栅的强度分布即为若干个相同振幅，相位差相同的光的叠加。 \par
+
+整体周期的相位差为 $\gamma = k\delta = \frac{2k\pi d \sin{\theta}}{\lambda}$，振幅 $A' = A \frac{\sin{(n\gamma / 2)}}{\sin{(\gamma / 2)}}$。 \par
+
+由于光强和振幅的平方成正比，设比例系数 $k'$，则有： \par
+
+\begin{equation}
+  I = k' \left(\frac{k\lambda}{\pi\sin{\theta}}\right)^2 \left(\frac{\sin{\left(\frac{n\gamma}{2}\right)}}{\sin{\left(\frac{\gamma}{2}\right)}}\right)^2 (p_{cos}^2+p_{sin}^2)
+  \label{eq6}
+\end{equation}
+
+取 $\theta = 0$，有 \par
+
+\begin{equation}
+I_0 = k^2k'n^2s^2
+\label{eq6}
+\end{equation}
+
+从而，可以得出系数因子
+
+\begin{equation}
+k_0 = \frac{I}{I_0} = \left(\frac{\sin{\left(\frac{n\gamma}{2}\right)}}{n\sin{\left(\frac{\gamma}{2}\right)}}\right)^2 \frac{p_{cos}^2+p_{sin}^2}{\left(\sum_{i=1}^n \beta_i\right)^2} \stackrel{def}{=} k_{Interfere}k_{Diffraction}
+\end{equation}
+
+其中，$k_{Interfere}$ 为干涉因子，$k_{Diffraction}$ 为衍射因子。
+
+综上，$I = k_{Interfere} k_{Diffraction} \cdot I_0$。
+
+\section{参考文献}
+
+曹驰宇, 王文玲, and 黄安平. "缝宽周期性变化的光栅的衍射光强分析." 大学物理 第38卷.5(2019):57-62.
+
+\end{document}
